@@ -1,0 +1,2490 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PersistentLayer</name>
+    </assembly>
+    <members>
+        <member name="T:PersistentLayer.IPagedDAO`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="T:PersistentLayer.IPersisterDAO`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="T:PersistentLayer.IQueryableDAO`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="M:PersistentLayer.IQueryableDAO`2.Exists(`1)">
+            <summary>
+            
+            </summary>
+            <param name="identifier"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IQueryableDAO`2.Exists(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            
+            </summary>
+            <param name="identifiers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IQueryableDAO`2.FindBy(`1)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IQueryableDAO`2.FindAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IQueryableDAO`2.FindAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="where"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PersistentLayer.ITransactionContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.ITransactionContext.GetTransactionProvider">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IPersisterDAO`2.MakePersistent(`0)">
+            <summary>
+            Saves or updates the given instance, It depends upon the indentifier value.
+            </summary>
+            <param name="entity">the current instance which contains the state to persist.</param>
+            <returns>returns the current persistent instance.</returns>
+        </member>
+        <member name="M:PersistentLayer.IPersisterDAO`2.MakePersistent(`0,`1)">
+            <summary>
+            Updates the persistent state associated with the given identifier.
+            </summary>
+            <param name="entity">the current instance which contains the state to persist.</param>
+            <param name="identifier">the persistent indentifier which be updated.</param>
+            <returns>returns the current persistent instance.</returns>
+        </member>
+        <member name="M:PersistentLayer.IPersisterDAO`2.MakePersistent(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IPersisterDAO`2.MakeTransient(`0)">
+            <summary>
+            
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:PersistentLayer.IPersisterDAO`2.MakeTransient(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="entities"></param>
+        </member>
+        <member name="M:PersistentLayer.IPagedDAO`2.GetPagedResult(System.Int32,System.Int32,System.Linq.IQueryable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PersistentLayer.IPagedDAO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:PersistentLayer.IPersisterDAO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:PersistentLayer.IQueryableDAO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.IQueryableDAO.Exists``2(``1)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="identifier"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IQueryableDAO.Exists``2(System.Collections.Generic.IEnumerable{``1})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="identifiers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IQueryableDAO.FindBy``2(``1)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IQueryableDAO.FindAll``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IQueryableDAO.FindAll``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IPersisterDAO.MakePersistent``1(``0)">
+            <summary>
+            Saves or updates the given instance, It depends upon the indentifier value.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entity">the current instance which contains the state to persist.</param>
+            <returns>returns the current persistent instance.</returns>
+        </member>
+        <member name="M:PersistentLayer.IPersisterDAO.MakePersistent``2(``0,``1)">
+            <summary>
+            Updates the persistent state associated with the given identifier.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="entity">the current instance which contains the state to persist.</param>
+            <param name="identifier">the persistent indentifier which be updated.</param>
+            <returns>returns the current persistent instance.</returns>
+        </member>
+        <member name="M:PersistentLayer.IPersisterDAO.MakePersistent``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.IPersisterDAO.MakeTransient``1(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entity"></param>
+        </member>
+        <member name="M:PersistentLayer.IPersisterDAO.MakeTransient``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entities"></param>
+        </member>
+        <member name="M:PersistentLayer.IPagedDAO.GetPagedResult``1(System.Int32,System.Int32,System.Linq.IQueryable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PersistentLayer.IPagedResult`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="M:PersistentLayer.IPagedResult`1.GetResult">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:PersistentLayer.IPagedResult`1.StartIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:PersistentLayer.IPagedResult`1.Size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:PersistentLayer.IPagedResult`1.Counter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:PersistentLayer.ITransactionProvider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.ITransactionProvider.BeginTransaction(System.Nullable{System.Data.IsolationLevel})">
+            <summary>
+            Begin a new transaction
+            </summary>
+            <param name="level"></param>
+        </member>
+        <member name="M:PersistentLayer.ITransactionProvider.CommitTransaction">
+            <summary>
+            Commit the transaction.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.ITransactionProvider.RollbackTransaction">
+            <summary>
+            Makes a rollback the transaction.
+            </summary>
+        </member>
+        <member name="T:PersistentLayer.Exceptions.BusinessLayerException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.BusinessLayerException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.BusinessLayerException.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="invokerName"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.BusinessLayerException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.BusinessLayerException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="invokerName"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="P:PersistentLayer.Exceptions.BusinessLayerException.InvokerName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:PersistentLayer.Exceptions.BusinessObjectException">
+            <summary>
+            Rappresents an generic error when uses a business DAOs.
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.BusinessObjectException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.BusinessObjectException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="T:PersistentLayer.Exceptions.BusinessPersistentException">
+            <summary>
+            An exception which is thrown when a generic query is executed through DAO methods because of an failed persistent operation.
+            </summary>
+        </member>
+        <member name="T:PersistentLayer.Exceptions.ExecutionQueryException">
+            <summary>
+            An exception which is thrown when a generic query is executed through DAO methods.
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.ExecutionQueryException.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="methodInvoker"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.ExecutionQueryException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.ExecutionQueryException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="methodInvoker"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="P:PersistentLayer.Exceptions.ExecutionQueryException.MethodInvoker">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.BusinessPersistentException.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="methodInvoker"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.BusinessPersistentException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.BusinessPersistentException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="methodInvoker"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="T:PersistentLayer.Exceptions.CommitFailedException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.CommitFailedException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.CommitFailedException.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="invokerName"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.CommitFailedException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.CommitFailedException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="invokerName"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="T:PersistentLayer.Exceptions.InnerRollBackException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.InnerRollBackException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.InnerRollBackException.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="invokerName"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.InnerRollBackException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.InnerRollBackException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="invokerName"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="P:PersistentLayer.Exceptions.InnerRollBackException.IndexTransaction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:PersistentLayer.Exceptions.QueryArgumentException">
+            <summary>
+            An exception which is thrown when a generic query is executed through DAO methods because of an not valid argument
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.QueryArgumentException.#ctor(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="methodInvoker"></param>
+            <param name="argumentName"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.QueryArgumentException.#ctor(System.String,System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="methodInvoker"></param>
+            <param name="argumentName"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="P:PersistentLayer.Exceptions.QueryArgumentException.ArgumentName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:PersistentLayer.Exceptions.QueryFormatException">
+            <summary>
+            An exception which is thrown when a generic query is executed through DAO methods because of an not valid query syntax.
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.QueryFormatException.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="methodInvoker"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.QueryFormatException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.QueryFormatException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="methodInvoker"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="T:PersistentLayer.Exceptions.RollbackFailedException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.RollbackFailedException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.RollbackFailedException.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="invokerName"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.RollbackFailedException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:PersistentLayer.Exceptions.RollbackFailedException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="invokerName"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.IDomainDAO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.INhQueryableDAO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.INhQueryableDAO.ToIQueryable``1">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.INhQueryableDAO.ToIQueryable``1(NHibernate.CacheMode)">
+            <summary>
+            
+            </summary>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.INhQueryableDAO.ToIQueryable``1(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="region"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.INhQueryableDAO.ToIQueryable``1(NHibernate.CacheMode,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mode"></param>
+            <param name="region"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IDomainDAO.FindBy``2(``1,NHibernate.LockMode)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="id"></param>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IDomainDAO.FindAll``1(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="cacheable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IDomainDAO.FindAll``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="cacheRegion"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IDomainDAO.FindAll``1(System.Int32)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="fetchSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IDomainDAO.FindAll``1(NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IDomainDAO.FindAll``1(NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IDomainDAO.FindAllFuture``1(NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IDomainDAO.FindAllFuture``1(NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IDomainDAO.GetFutureValue``1(NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="FutureValue"></typeparam>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IDomainDAO.GetFutureValue``2(NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="FutureValue"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IDomainDAO.Exists(NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IDomainDAO.Exists``1(NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IDomainDAO.RefreshState``1(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IDomainDAO.RefreshState``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.IEntityDAO`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.INhQueryableDAO`2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.INhQueryableDAO`2.ToIQueryable">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.INhQueryableDAO`2.ToIQueryable(NHibernate.CacheMode)">
+            <summary>
+            
+            </summary>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.INhQueryableDAO`2.ToIQueryable(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="region"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.INhQueryableDAO`2.ToIQueryable(NHibernate.CacheMode,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mode"></param>
+            <param name="region"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IEntityDAO`2.FindBy(`1,NHibernate.LockMode)">
+            <summary>
+            Finds the object which matches with the given key.
+            </summary>
+            <param name="id">The key of instance to get.</param>
+            <param name="mode">The type of locking for the instance to get, this argument can be null.</param>
+            <returns>return an instance related to the calling type object.</returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IEntityDAO`2.FindAll(System.Boolean)">
+            <summary>
+            gets all instances from data source, and cache the query.
+            </summary>
+            <param name="cacheable">specify if cache will be switch on.</param>
+            <returns>a set of instances from database.</returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IEntityDAO`2.FindAll(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="cacheRegion"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IEntityDAO`2.FindAll(System.Int32)">
+            <summary>
+            sets the pre loaded of istances from the database.
+            </summary>
+            <param name="fetchSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IEntityDAO`2.FindAll(NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IEntityDAO`2.FindAll(NHibernate.Criterion.QueryOver{`0})">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IEntityDAO`2.FindAllFuture(NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IEntityDAO`2.FindAllFuture(NHibernate.Criterion.QueryOver{`0})">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IEntityDAO`2.GetFutureValue``1(NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="FutureValue"></typeparam>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IEntityDAO`2.GetFutureValue``1(NHibernate.Criterion.QueryOver{`0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="FutureValue"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IEntityDAO`2.Exists(NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IEntityDAO`2.Exists(NHibernate.Criterion.QueryOver{`0})">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IEntityDAO`2.RefreshState(`0)">
+            <summary>
+            
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.IEntityDAO`2.RefreshState(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.INhPagedDAO`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.ISessionDAO`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.ISessionContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:PersistentLayer.NHibernate.ISessionContext.SessionInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.INhPagedDAO`2.GetPagedResult(System.Int32,System.Int32,NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.INhPagedDAO`2.GetPagedResult(System.Int32,System.Int32,NHibernate.Criterion.QueryOver{`0})">
+            <summary>
+            
+            </summary>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.INhPagedDAO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.ISessionDAO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.INhPagedDAO.GetPagedResult``1(System.Int32,System.Int32,NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.INhPagedDAO.GetPagedResult``1(System.Int32,System.Int32,NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.InvalidSessionException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.InvalidSessionException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.InvalidSessionException.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="invokerName"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.InvalidSessionException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.InvalidSessionException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="invokerName"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.ISessionProvider">
+            <summary>
+            Provides sessions by a higher implementation.
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.ISessionProvider.GetCurrentSession">
+            <summary>
+            Gets the current bounded session by a higher implementation level.
+            </summary>
+            <returns>Returns the current binded session by a higher implementation level.</returns>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.NhConfigurationBuilder">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.NhConfigurationBuilder.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.NhConfigurationBuilder.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="fileCfg"></param>
+            <param name="dirMappingFiles"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.NhConfigurationBuilder.#ctor(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            
+            </summary>
+            <param name="fileCfg"></param>
+            <param name="mappingFiles"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.NhConfigurationBuilder.#ctor(System.Xml.XmlReader,System.IO.DirectoryInfo)">
+            <summary>
+            
+            </summary>
+            <param name="fileCfg"></param>
+            <param name="directory"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.NhConfigurationBuilder.#ctor(NHibernate.Cfg.Configuration)">
+            <summary>
+            
+            </summary>
+            <param name="cfg"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.NhConfigurationBuilder.#ctor(FluentNHibernate.Cfg.FluentConfiguration)">
+            <summary>
+            Makes a new Configuration instance from the given Fluent configuration.
+            </summary>
+            <param name="cfg"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.NhConfigurationBuilder.OverrideProperty(System.String,System.String)">
+            <summary>
+            Sets the value of the Configuration property.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.NhConfigurationBuilder.SetProperty(System.String,System.String)">
+            <summary>
+            Sets the value of the Configuration property.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.NhConfigurationBuilder.SetProperties(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Sets the values of the Configuration properties.
+            </summary>
+            <param name="properties"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.NhConfigurationBuilder.SetInterceptor(NHibernate.IInterceptor)">
+            <summary>
+            Sets the default interceptor object which be used by all session created by the SessionFactory.
+            </summary>
+            <param name="defaultInterceptor"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.NhConfigurationBuilder.BuildSessionFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:PersistentLayer.NHibernate.NhConfigurationBuilder.HasClassMappings">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:PersistentLayer.NHibernate.NhConfigurationBuilder.Config">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:PersistentLayer.NHibernate.NhConfigurationBuilder.SessionFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.SessionBinderLayer`1">
+            <summary>
+            A session manager which gets binded and unbinded sessions.
+            </summary>
+            <typeparam name="TBinder">type of binder which uses this session manager.</typeparam>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.SessionManager">
+            <summary>
+            Manages the session factory in order to open/manage Sessions.
+            </summary>
+        </member>
+        <member name="F:PersistentLayer.NHibernate.SessionManager.sessionFactory">
+            <summary>
+            This is the factory which creates new sessions, and It's able to reference the current binded session
+            made by CurrentSessionContext
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionManager.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionManager.#ctor(NHibernate.ISessionFactory)">
+            <summary>
+            
+            </summary>
+            <param name="sessionFactory"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionManager.GetCurrentSession">
+            <summary>
+            Gets the current binded session from the calling session manager.
+            </summary>
+            <returns>returns the current binded session</returns>
+            <exception cref="T:PersistentLayer.NHibernate.SessionNotBindedException">
+            Throws an exception when there's no session binded into any CurrentSessionContext.
+            </exception>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionManager.BeginTransaction(System.Nullable{System.Data.IsolationLevel})">
+            <summary>
+            Begin a new transaction from the current binded session with the specified IsolationLevel.
+            </summary>
+            <param name="level">IsolationLevel for this transaction.</param>
+            <exception cref="T:PersistentLayer.NHibernate.SessionNotBindedException">
+            Throws an exception when there's no session binded into any CurrentSessionContext.
+            </exception>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionManager.CommitTransaction">
+            <summary>
+            Commit the current transaction and flushes the associated session.
+            </summary>
+            <exception cref="T:PersistentLayer.Exceptions.CommitFailedException">
+            Throws an exception when current transaction tries to commit.
+            </exception>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionManager.RollbackTransaction">
+            <summary>
+            Makes a rollback into current transaction
+            </summary>
+            <exception cref="T:PersistentLayer.Exceptions.RollbackFailedException">
+            Throws an exception when current transaction makes a rollback.
+            </exception>
+            <exception cref="T:PersistentLayer.Exceptions.InnerRollBackException">
+            Throws an exception when an inner transaction makes a rollback.
+            </exception>
+        </member>
+        <member name="P:PersistentLayer.NHibernate.SessionManager.SessionFactory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:PersistentLayer.NHibernate.SessionManager.TransactionCounter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionBinderLayer`1.#ctor(NHibernate.ISessionFactory)">
+            <summary>
+            
+            </summary>
+            <param name="sessionFactory"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionBinderLayer`1.OnInit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionBinderLayer`1.OpenSession">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionBinderLayer`1.BindSession(NHibernate.ISession,NHibernate.FlushMode)">
+            <summary>
+            
+            </summary>
+            <param name="session"></param>
+            <param name="mode"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionBinderLayer`1.HasSessionBinded">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionBinderLayer`1.UnbindSession">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionBinderLayer`1.RollbackTransaction">
+            <summary>
+            Makes a rollback the current transaction.
+            </summary>
+            <remarks>
+            When a inner transaction rollbacks, It will be thrown a InnerRollBackException.
+            After making rollback the transaction, the current session will be closed, then the current provider opens a new session in order to bind it into current context.
+            </remarks>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.SessionInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionInfo.#ctor(PersistentLayer.NHibernate.ISessionProvider)">
+            <summary>
+            
+            </summary>
+            <param name="provider"></param>
+        </member>
+        <member name="P:PersistentLayer.NHibernate.SessionInfo.CurrentSession">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:PersistentLayer.NHibernate.SessionInfo.Provider">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.SessionNotAvailableException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionNotAvailableException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionNotAvailableException.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="invokerName"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionNotAvailableException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionNotAvailableException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="invokerName"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.SessionNotBindedException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionNotBindedException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionNotBindedException.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="invokerName"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionNotBindedException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionNotBindedException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="invokerName"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.SessionNotOpenedException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionNotOpenedException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionNotOpenedException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.SessionNotOpenedException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+            <param name="invokerName"></param>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.Impl.AbstractDAO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.AbstractDAO.GetTransactionProvider">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:PersistentLayer.NHibernate.Impl.AbstractDAO.SessionInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:PersistentLayer.NHibernate.Impl.AbstractDAO.CurrentSession">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.Impl.BusinessDAO`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="VKey"></typeparam>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.Impl.EntityDAO`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.FindBy(`1)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.FindBy(`1,NHibernate.LockMode)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.FindAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.FindAll(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.FindAll(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="cacheable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.FindAll(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="cacheRegion"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.FindAll(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="fetchSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.FindAll(NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.FindAll(NHibernate.Criterion.QueryOver{`0})">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.FindAllFuture(NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.FindAllFuture(NHibernate.Criterion.QueryOver{`0})">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.GetFutureValue``1(NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="FutureValue"></typeparam>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.GetFutureValue``1(NHibernate.Criterion.QueryOver{`0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="FutureValue"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.Exists(`1)">
+            <summary>
+            
+            </summary>
+            <param name="identifier"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.Exists(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            
+            </summary>
+            <param name="identifiers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.Exists(NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.Exists(NHibernate.Criterion.QueryOver{`0})">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.MakePersistent(`0)">
+            <summary>
+            
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.MakePersistent(`0,`1)">
+            <summary>
+            
+            </summary>
+            <param name="entity"></param>
+            <param name="identifier"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.MakePersistent(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.MakeTransient(`0)">
+            <summary>
+            
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.MakeTransient(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="entities"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.RefreshState(`0)">
+            <summary>
+            
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.RefreshState(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.ToIQueryable">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.ToIQueryable(NHibernate.CacheMode)">
+            <summary>
+            
+            </summary>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.ToIQueryable(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="region"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EntityDAO`2.ToIQueryable(NHibernate.CacheMode,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="mode"></param>
+            <param name="region"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.BusinessDAO`2.#ctor(PersistentLayer.NHibernate.ISessionProvider)">
+            <summary>
+            
+            </summary>
+            <param name="sessionProvider"></param>
+        </member>
+        <member name="P:PersistentLayer.NHibernate.Impl.BusinessDAO`2.SessionInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.Impl.BusinessPagedDAO`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.BusinessPagedDAO`2.#ctor(PersistentLayer.NHibernate.ISessionProvider)">
+            <summary>
+            
+            </summary>
+            <param name="sessionProvider"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.BusinessPagedDAO`2.GetPagedResult(System.Int32,System.Int32,NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.BusinessPagedDAO`2.GetPagedResult(System.Int32,System.Int32,NHibernate.Criterion.QueryOver{`0})">
+            <summary>
+            
+            </summary>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.BusinessPagedDAO`2.GetPagedResult(System.Int32,System.Int32,System.Linq.IQueryable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.Impl.DomainDAO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.FindBy``2(``1)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.FindBy``2(``1,NHibernate.LockMode)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="id"></param>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.FindAll``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.FindAll``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.FindAll``1(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="cacheable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.FindAll``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="cacheRegion"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.FindAll``1(System.Int32)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="fetchSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.FindAll``1(NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.FindAll``1(NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.FindAllFuture``1(NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.FindAllFuture``1(NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.GetFutureValue``1(NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="FutureValue"></typeparam>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.GetFutureValue``2(NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="FutureValue"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.Exists``2(``1)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="identifier"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.Exists``2(System.Collections.Generic.IEnumerable{``1})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="identifiers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.Exists(NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.Exists``1(NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.MakePersistent``1(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.MakePersistent``2(``0,``1)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="entity"></param>
+            <param name="identifier"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.MakePersistent``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.MakeTransient``1(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entity"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.MakeTransient``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entities"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.RefreshState``1(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.RefreshState``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.ToIQueryable``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.ToIQueryable``1(NHibernate.CacheMode)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.ToIQueryable``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="region"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.DomainDAO.ToIQueryable``1(NHibernate.CacheMode,System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="mode"></param>
+            <param name="region"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.Impl.EnterpriseDAO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EnterpriseDAO.#ctor(PersistentLayer.NHibernate.ISessionProvider)">
+            <summary>
+            
+            </summary>
+            <param name="sessionProvider"></param>
+        </member>
+        <member name="P:PersistentLayer.NHibernate.Impl.EnterpriseDAO.SessionInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.Impl.EnterprisePagedDAO">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EnterprisePagedDAO.#ctor(PersistentLayer.NHibernate.ISessionProvider)">
+            <summary>
+            
+            </summary>
+            <param name="sessionProvider"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EnterprisePagedDAO.GetPagedResult``1(System.Int32,System.Int32,NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EnterprisePagedDAO.GetPagedResult``1(System.Int32,System.Int32,NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.EnterprisePagedDAO.GetPagedResult``1(System.Int32,System.Int32,System.Linq.IQueryable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.Impl.NhPagedResult`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhPagedResult`1.#ctor(System.Int32,System.Int32,NHibernate.ICriteria)">
+            <summary>
+            
+            </summary>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="criteria"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhPagedResult`1.#ctor(System.Int32,System.Int32,System.Linq.IQueryable{`0})">
+            <summary>
+            
+            </summary>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="query"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhPagedResult`1.GetResult">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhPagedResult`1.Reset">
+            <summary>
+            resets all fields values
+            </summary>
+        </member>
+        <member name="P:PersistentLayer.NHibernate.Impl.NhPagedResult`1.StartIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:PersistentLayer.NHibernate.Impl.NhPagedResult`1.Size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:PersistentLayer.NHibernate.Impl.NhPagedResult`1.Counter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.Impl.NhQueryExtensions">
+            <summary>
+            Extensions methods for DAO's.
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.ToFutureValue``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{System.Linq.IQueryable{``0},``1}})">
+            <summary>
+            Converts lambda tree expression into IFutureValue object.
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="source"></param>
+            <param name="selector"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.Merge``1(PersistentLayer.NHibernate.ISessionContext,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="sourceDAO"></param>
+            <param name="instance"></param>
+            <exception cref="T:PersistentLayer.Exceptions.BusinessPersistentException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.IsCached``1(PersistentLayer.NHibernate.ISessionContext,``0)">
+            <summary>
+            Indicates if the argument is present into current session cache.
+            </summary>
+            <typeparam name="TEntity">Persistence instance</typeparam>
+            <param name="sourceDAO">DAO which is associated into the current session.</param>
+            <param name="instance">persistence instance to check.</param>
+            <returns>returns a boolean value indicating if persistent entity is present into current session cache.</returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.IsCached``1(PersistentLayer.NHibernate.ISessionContext,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="sourceDAO"></param>
+            <param name="instances"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.GetIdentifier``2(PersistentLayer.NHibernate.ISessionContext,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="sourceDAO"></param>
+            <param name="instance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.SessionWithChanges(PersistentLayer.NHibernate.ISessionContext)">
+            <summary>
+            Indicates if the current session contains any changes which must be synchronized with the database.
+            </summary>
+            <param name="sourceDAO"></param>
+            <returns>returns a boolean value indicating if the current session associated with the calling DAO contains any changes to persist.</returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.Evict``1(PersistentLayer.NHibernate.ISessionContext,``0)">
+            <summary>
+            Evicts the persistent instance from session cache, if instance is cached into current session.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="sourceDAO"></param>
+            <param name="instance"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.Evict``1(PersistentLayer.NHibernate.ISessionContext,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Evicts all instances present into collection argument, if instances are cached into current session.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="sourceDAO"></param>
+            <param name="instances"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.Evict(PersistentLayer.NHibernate.ISessionContext)">
+            <summary>
+            Evict all persistent instances from the current session cache.
+            </summary>
+            <param name="sourceDAO">DAO associated with session wich be clear.</param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.TransformResult``2(PersistentLayer.NHibernate.ISessionContext,NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="sourceDAO"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.ToProjectOver``1(PersistentLayer.NHibernate.ISessionContext,NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="sourceDAO"></param>
+            <param name="query"></param>
+            <exception cref="T:PersistentLayer.Exceptions.QueryArgumentException"></exception>
+            <exception cref="T:PersistentLayer.Exceptions.ExecutionQueryException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.TransformFutureResult``2(PersistentLayer.NHibernate.ISessionContext,NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="sourceDAO"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.ToProjectOverFuture``1(PersistentLayer.NHibernate.ISessionContext,NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="sourceDAO"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.TransformResult``1(PersistentLayer.NHibernate.ISessionContext,NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="sourceDAO"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.ToProjectOver(PersistentLayer.NHibernate.ISessionContext,NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <param name="sourceDAO"></param>
+            <param name="criteria"></param>
+            <exception cref="T:PersistentLayer.Exceptions.QueryArgumentException"></exception>
+            <exception cref="T:PersistentLayer.Exceptions.ExecutionQueryException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.TransformFutureResult``1(PersistentLayer.NHibernate.ISessionContext,NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="sourceDAO"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.ToProjectOverFuture(PersistentLayer.NHibernate.ISessionContext,NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <param name="sourceDAO"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.TransformResult``2(PersistentLayer.NHibernate.ISessionContext,NHibernate.Transform.IResultTransformer,NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="sourceDAO"></param>
+            <param name="transformer"></param>
+            <param name="query"></param>
+            <exception cref="T:PersistentLayer.Exceptions.QueryArgumentException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.TransformFutureResult``2(PersistentLayer.NHibernate.ISessionContext,NHibernate.Transform.IResultTransformer,NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TResult"></typeparam>
+            <param name="sourceDAO"></param>
+            <param name="transformer"></param>
+            <param name="query"></param>
+            <exception cref="T:PersistentLayer.Exceptions.QueryArgumentException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.TransformResult``1(PersistentLayer.NHibernate.ISessionContext,NHibernate.Transform.IResultTransformer,NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            Set a strategy for handling the query results. This transforms the query result into specific collection typed.
+            </summary>
+            <typeparam name="TResult">The type of result</typeparam>
+            <param name="sourceDAO"></param>
+            <param name="transformer">The tranformer which converts the result query into collection result typed</param>
+            <param name="criteria">The given detached criteria to invoke to get result to transforming.</param>
+            <exception cref="T:PersistentLayer.Exceptions.QueryArgumentException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.TransformFutureResult``1(PersistentLayer.NHibernate.ISessionContext,NHibernate.Transform.IResultTransformer,NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="sourceDAO"></param>
+            <param name="transformer"></param>
+            <param name="criteria"></param>
+            <exception cref="T:PersistentLayer.Exceptions.QueryArgumentException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.TransformResult``1(PersistentLayer.NHibernate.ISessionContext,NHibernate.Transform.IResultTransformer,NHibernate.ICriteria)">
+            <summary>
+            Set a strategy for handling the query results. This determines the "shape" of the query result set.
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="sourceDAO"></param>
+            <param name="transformer"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.TransformFutureResult``1(PersistentLayer.NHibernate.ISessionContext,NHibernate.Transform.IResultTransformer,NHibernate.ICriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="sourceDAO"></param>
+            <param name="transformer"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.ToProjectOver(PersistentLayer.NHibernate.ISessionContext,NHibernate.ICriteria)">
+            <summary>
+            
+            </summary>
+            <param name="sourceDAO"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.ToProjectOverFuture(PersistentLayer.NHibernate.ISessionContext,NHibernate.ICriteria)">
+            <summary>
+            
+            </summary>
+            <param name="sourceDAO"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.GetNamedQuery(PersistentLayer.NHibernate.ISessionContext,System.String)">
+            <summary>
+            Get an instance of IQuery for a named query defined into mapping file.
+            </summary>
+            <param name="sourceDAO"></param>
+            <param name="queryName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.MakeSQLQuery(PersistentLayer.NHibernate.ISessionContext,System.String)">
+            <summary>
+            Make a NHibernate.ISQLQuery instance for the given SQL query string.
+            </summary>
+            <param name="sourceDAO"></param>
+            <param name="query"></param>
+            <exception cref="T:PersistentLayer.Exceptions.QueryArgumentException"></exception>
+            <exception cref="T:PersistentLayer.Exceptions.QueryFormatException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.MakeHQLQuery(PersistentLayer.NHibernate.ISessionContext,System.String)">
+            <summary>
+            Make a NHibernate.ISQLQuery instance for the given HQL string.
+            </summary>
+            <param name="sourceDAO"></param>
+            <param name="query"></param>
+            <exception cref="T:PersistentLayer.Exceptions.QueryArgumentException"></exception>
+            <exception cref="T:PersistentLayer.Exceptions.QueryFormatException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryExtensions.MakeFilter``1(PersistentLayer.NHibernate.ISessionContext,System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="sourceDAO"></param>
+            <param name="instances"></param>
+            <param name="filter"></param>
+            <exception cref="T:PersistentLayer.Exceptions.QueryArgumentException"></exception>
+            <exception cref="T:PersistentLayer.Exceptions.QueryFormatException"></exception>
+            <returns></returns>
+        </member>
+        <member name="T:PersistentLayer.NHibernate.Impl.NhQueryImplementor">
+            <summary>
+            A basic class which implements all business DAO methods.
+            </summary>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.FindBy``2(NHibernate.ISession,``1)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="session"></param>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.FindBy``2(NHibernate.ISession,``1,NHibernate.LockMode)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="session"></param>
+            <param name="id"></param>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.FindAll``1(NHibernate.ISession)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.FindAll``1(NHibernate.ISession,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.FindAll``1(NHibernate.ISession,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="cacheable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.FindAll``1(NHibernate.ISession,System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="cacheRegion"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.FindAll``1(NHibernate.ISession,System.Int32)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="fetchSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.FindAll``1(NHibernate.ISession,NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.FindAll``1(NHibernate.ISession,NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.FindAllFuture``1(NHibernate.ISession,NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.FindAllFuture``1(NHibernate.ISession,NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.GetFutureValue``1(NHibernate.ISession,NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="FutureValue"></typeparam>
+            <param name="session"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.GetFutureValue``2(NHibernate.ISession,NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="FutureValue"></typeparam>
+            <param name="session"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.Exists``2(NHibernate.ISession,``1)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="session"></param>
+            <param name="identifier"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.Exists``2(NHibernate.ISession,System.Collections.Generic.IEnumerable{``1})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="session"></param>
+            <param name="identifiers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.Exists(NHibernate.ISession,NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <param name="session"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.Exists``1(NHibernate.ISession,NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.ToIQueryable``1(NHibernate.ISession)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.ToIQueryable``1(NHibernate.ISession,NHibernate.CacheMode)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.ToIQueryable``1(NHibernate.ISession,System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="region"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.ToIQueryable``1(NHibernate.ISession,NHibernate.CacheMode,System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="mode"></param>
+            <param name="region"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.MakePersistent``1(NHibernate.ISession,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.MakePersistent``2(NHibernate.ISession,``0,``1)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="session"></param>
+            <param name="entity"></param>
+            <param name="identifier"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.MakePersistent``1(NHibernate.ISession,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.MakeTransient``1(NHibernate.ISession,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="entity"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.MakeTransient``1(NHibernate.ISession,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="entities"></param>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.RefreshState``1(NHibernate.ISession,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.RefreshState``1(NHibernate.ISession,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.GetPagedResult``1(NHibernate.ISession,System.Int32,System.Int32,NHibernate.ICriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.GetPagedResult``1(NHibernate.ISession,System.Int32,System.Int32,NHibernate.Criterion.DetachedCriteria)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="criteria"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.GetPagedResult``1(NHibernate.ISession,System.Int32,System.Int32,NHibernate.Criterion.QueryOver{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.GetPagedResult``1(NHibernate.ISession,System.Int32,System.Int32,System.Linq.IQueryable{``0})">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <param name="startIndex"></param>
+            <param name="pageSize"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:PersistentLayer.NHibernate.Impl.NhQueryImplementor.GetIdentifierName``1(NHibernate.ISession)">
+            <summary>
+            This method serves for looking for indentifier name of any persistent class.
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="session"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
