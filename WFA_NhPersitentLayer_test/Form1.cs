@@ -14,6 +14,7 @@ using PersistentLayer.Domain;
 using PersistentLayer.NHibernate;
 using PersistentLayer.NHibernate.Impl;
 using WFA_NHibernate.Wrappers;
+using NHibernate.Type;
 
 namespace WFA_NHibernate
 {
@@ -21,9 +22,11 @@ namespace WFA_NHibernate
     {
         static ISessionFactory sessionFactory = null;
         NhConfigurationBuilder builder = null;
-        INhPagedDAO ownPagedDAO = null;
+        INhPagedDAO CurrentPagedDAO = null;
         ISessionProvider sessionProvider = null;
         string rootPathProject = null;
+        ISession currentSession = null;
+        PolymorphicDataSource source = new PolymorphicDataSource();
 
         public Form1()
         {
@@ -40,8 +43,9 @@ namespace WFA_NHibernate
             sessionFactory = builder.SessionFactory;
 
             sessionProvider = new SessionManager(sessionFactory);
+            CurrentPagedDAO = new EnterprisePagedDAO(sessionProvider);
 
-            ownPagedDAO = new EnterprisePagedDAO(sessionProvider);
+            this.currentSession = sessionFactory.OpenSession();
         }
 
         /// <summary>
@@ -79,7 +83,7 @@ namespace WFA_NHibernate
                 BindSession();
 
                 QueryOver<Salesman> query = QueryOver.Of<Salesman>().Where(n => n.ID > 10);
-                IPagedResult<Salesman> paged = ownPagedDAO.GetPagedResult<Salesman>(pageSize * pageIndex, pageSize, query);
+                IPagedResult<Salesman> paged = CurrentPagedDAO.GetPagedResult<Salesman>(pageSize * pageIndex, pageSize, query);
 
                 txtCounter.Text = paged.Counter.ToString();
                 dgv_Paging.DataSource = paged.GetResult();
@@ -107,7 +111,7 @@ namespace WFA_NHibernate
                 DetachedCriteria query = DetachedCriteria.For<Salesman>();
                 query.Add(Restrictions.Gt("ID", (long)5));
 
-                IPagedResult<Salesman> paged = ownPagedDAO.GetPagedResult<Salesman>(pageSize * pageIndex, pageSize, query);
+                IPagedResult<Salesman> paged = CurrentPagedDAO.GetPagedResult<Salesman>(pageSize * pageIndex, pageSize, query);
 
                 txtCounter.Text = paged.Counter.ToString();
                 dgv_Paging.DataSource = paged.GetResult();
@@ -131,9 +135,9 @@ namespace WFA_NHibernate
 
                 BindSession();
 
-                IQueryable<Salesman> query = ownPagedDAO.ToIQueryable<Salesman>().Where(n => n.ID > 5);
+                IQueryable<Salesman> query = CurrentPagedDAO.ToIQueryable<Salesman>().Where(n => n.ID > 5);
 
-                IPagedResult<Salesman> paged = ownPagedDAO.GetPagedResult<Salesman>(pageSize * pageIndex, pageSize, query);
+                IPagedResult<Salesman> paged = CurrentPagedDAO.GetPagedResult<Salesman>(pageSize * pageIndex, pageSize, query);
 
                 txtCounter.Text = paged.Counter.ToString();
                 dgv_Paging.DataSource = paged.GetResult();
@@ -156,7 +160,7 @@ namespace WFA_NHibernate
             try
             {
                 BindSession();
-                IQuery query = ownPagedDAO.GetNamedQuery(txtNamedQuery.Text);
+                IQuery query = CurrentPagedDAO.GetNamedQuery(txtNamedQuery.Text);
 
                 dgvTransformerResult.DataSource = query.SetParameter(txtNP1.Text, txtPar1.Text).List<Salesman>();
                 MessageBox.Show("Nessuna transformazione richiesta.");
@@ -175,7 +179,7 @@ namespace WFA_NHibernate
         #endregion
 
         /// <summary>
-        /// 
+        /// Execute the HQL statement.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -183,15 +187,16 @@ namespace WFA_NHibernate
         {
             try
             {
+                dgvTransformerResult.DataSource = null;
+
                 BindSession();
+
                 string strQuery = richTxtBox.Text;
-                IQuery query = ownPagedDAO.MakeHQLQuery(strQuery);
+                IQuery query = CurrentPagedDAO.MakeHQLQuery(strQuery);
 
                 AddParameters(query);
 
-                //dgvTransformerResult.DataSource = query.List<Salesman>();
-                dgvTransformerResult.DataSource = query.List();
-                MessageBox.Show("Nessuna transformazione richiesta.");
+                dgvTransformerResult.DataSource = source.MakeDataSource(query);
 
             }
             catch (Exception ex)
@@ -213,15 +218,17 @@ namespace WFA_NHibernate
         {
             try
             {
+                dgvTransformerResult.DataSource = null;
+
                 BindSession();
                 string strQuery = richTxtBox.Text;
-                ISQLQuery query = ownPagedDAO.MakeSQLQuery(strQuery);
-
+                ISQLQuery query = CurrentPagedDAO.MakeSQLQuery(strQuery);
+                
                 AddParameters(query);
 
-                query.AddEntity(typeof(Salesman));
-                dgvTransformerResult.DataSource = query.List<Salesman>();
-                MessageBox.Show("Nessuna transformazione richiesta.");
+                //query.AddEntity(typeof(Salesman));
+
+                dgvTransformerResult.DataSource = source.MakeDataSource(query);
             }
             catch (Exception ex)
             {
@@ -260,7 +267,10 @@ namespace WFA_NHibernate
         /// </summary>
         private void BindSession()
         {
-            CurrentSessionContext.Bind(sessionFactory.OpenSession());
+            if (this.currentSession == null || !this.currentSession.IsOpen)
+                this.currentSession = sessionFactory.OpenSession();
+
+            CurrentSessionContext.Bind(this.currentSession);
         }
 
         /// <summary>
@@ -268,11 +278,12 @@ namespace WFA_NHibernate
         /// </summary>
         private void UnBindSession()
         {
-            ISession session = CurrentSessionContext.Unbind(sessionFactory);
-            if (session != null)
-            {
-                session.Close();
-            }
+            //ISession session = CurrentSessionContext.Unbind(sessionFactory);
+            //if (session != null)
+            //{
+            //    session.Close();
+            //}
+            CurrentSessionContext.Unbind(sessionFactory);
         }
 
         #region
@@ -281,7 +292,7 @@ namespace WFA_NHibernate
             try
             {
                 BindSession();
-                Salesman cons = ownPagedDAO.FindBy<Salesman, long?>(Convert.ToInt64(txtLoader.Text), LockMode.Read);
+                Salesman cons = CurrentPagedDAO.FindBy<Salesman, long?>(Convert.ToInt64(txtLoader.Text), LockMode.Read);
 
                 MessageBox.Show(cons.ToString(), "All right");
             }
@@ -349,6 +360,20 @@ namespace WFA_NHibernate
             {
                 //UnBindSession();
                 session.Close();
+            }
+        }
+
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.currentSession = null;
+            if (CurrentSessionContext.HasBind(sessionFactory))
+            {
+                ISession session = CurrentSessionContext.Unbind(sessionFactory);
+                if (session != null && session.IsOpen)
+                {
+                    session.Close();
+                }
             }
         }
         

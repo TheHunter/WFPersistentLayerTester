@@ -20,8 +20,8 @@
 	
 	<query name="ConsultantsQueryByCode">
 		<query-param name="codice" type="long" />
-        from Salesman cons where cons.IdentityCode >= :code
-    </query>
+		from Salesman cons where cons.IdentityCode >= :code
+	</query>
 
 	<sql-query name="SetConsultantByName" resultset-ref="SetConsultants">
 		<![CDATA[
@@ -37,13 +37,13 @@
 	</sql-query>
 
 	<sql-query name="RepConsultant">
-        <return-scalar column="ID" type="System.Int32" />
+		<return-scalar column="ID" type="System.Int32" />
 		<return-scalar column="Name" type="System.String" />
 		<return-scalar column="Surname" type="System.String" />
 		<return-scalar column="NumSubAgents" type="System.Int32" />
 		<![CDATA[
 		SELECT
-                CONS.ID,
+				CONS.ID,
 				CONS.Name,
 				CONS.Surname,
 				count(AG.IDSalesman) NumSubAgents
