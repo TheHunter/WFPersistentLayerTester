@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using NHibernate;
 using NHibernate.Criterion;
@@ -13,6 +15,7 @@ using PersistentLayer;
 using PersistentLayer.Domain;
 using PersistentLayer.NHibernate;
 using PersistentLayer.NHibernate.Impl;
+using WFA_NHibernate.Domain;
 using WFA_NHibernate.Wrappers;
 using NHibernate.Type;
 
@@ -20,16 +23,28 @@ namespace WFA_NHibernate
 {
     public partial class Form1 : Form
     {
-        static ISessionFactory sessionFactory = null;
-        NhConfigurationBuilder builder = null;
-        INhPagedDAO CurrentPagedDAO = null;
-        ISessionProvider sessionProvider = null;
-        string rootPathProject = null;
-        ISession currentSession = null;
-        PolymorphicDataSource source = new PolymorphicDataSource();
+        static ISessionFactory sessionFactory;
+        NhConfigurationBuilder builder;
+        INhPagedDAO CurrentPagedDAO;
+        ISessionProvider sessionProvider;
+        string rootPathProject;
+        ISession currentSession;
+        readonly PolymorphicDataSource source = new PolymorphicDataSource();
 
         public Form1()
         {
+
+            //Type t = typeof(User);
+            //Type t1 = typeof(Course<>);
+            //Type t2 = typeof(Course<Teacher>);
+            //Type t3 = typeof(Course<Collaborator>);
+
+            //Console.WriteLine(t.Name);
+            //Console.WriteLine(t1.Name);
+            //Console.WriteLine(t2.Name);
+            //Console.WriteLine(t3.Name);
+
+
             InitializeComponent();
             SetRootPathProject();
 
@@ -188,9 +203,9 @@ namespace WFA_NHibernate
             try
             {
                 dgvTransformerResult.DataSource = null;
-
                 BindSession();
 
+                
                 string strQuery = richTxtBox.Text;
                 IQuery query = CurrentPagedDAO.MakeHQLQuery(strQuery);
 
@@ -374,6 +389,39 @@ namespace WFA_NHibernate
                 {
                     session.Close();
                 }
+            }
+        }
+
+        private void btn10_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                BindSession();
+
+                sessionProvider.BeginTransaction(IsolationLevel.ReadCommitted);
+
+                #region nuovo record di Course, test 1
+                //Course<User> tmp = new Course<User>();
+                //tmp.Nominative = "Mathematics";
+                //tmp.CurrentUser = CurrentPagedDAO.FindBy<Teacher, int>(1);
+                //CurrentPagedDAO.MakePersistent(tmp);
+                #endregion
+
+                #region nuovo record di Course, test 2, aggiunta di un nuovo oggetto (associazione).
+                //Course<User> tmp2 = new Course<User>();
+                //tmp2.Nominative = "Informatics";
+                //tmp2.CurrentUser = new Teacher() { Name = "Mr Jones", CollegeCode = 100, Nick = "jnd" };
+                //CurrentPagedDAO.MakePersistent(tmp2);
+                #endregion
+
+                
+
+                sessionProvider.CommitTransaction();
+            }
+            catch (Exception ex)
+            {
+                sessionProvider.RollbackTransaction();
+                UnBindSession();
             }
         }
         

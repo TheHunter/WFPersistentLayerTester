@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping
+    assembly="WFA_NHibernate"
+    namespace="WFA_NHibernate.Domain"
+    default-access="property"
+    xmlns="urn:nhibernate-mapping-2.2">
+
+    <class name="Course`1[WFA_NHibernate.Domain.User]" table="Course">
+        <id name="ID">
+            <generator class="identity" />
+        </id>
+        <version name="Version" type="int" />
+        <property name="Nominative" type="String" />
+        <many-to-one name="CurrentUser"
+                     class="User"
+                     column="FKUser"
+                     not-null="true"
+                     cascade="save-update"
+                     >
+        </many-to-one>
+        
+    </class>
+
+</hibernate-mapping>

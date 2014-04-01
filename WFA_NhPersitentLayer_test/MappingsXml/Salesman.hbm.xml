@@ -31,11 +31,19 @@
         <key column="IDSalesman" not-null="false" />
         <many-to-many class="Salesman" column="IDAgent" not-found="ignore" />
     </set>
-    <set name="Contracts"
+    <!--<set name="Contracts"
          inverse="true"
          batch-size="10"
          table="TradeContract"
          cascade="save-update"
+        >
+        <key column="FKSalesman" not-null="true" />
+        <one-to-many class="TradeContract" />
+    </set>-->
+    <set name="Contracts"
+        inverse="true"
+        batch-size="10"
+        cascade="save-update"
         >
         <key column="FKSalesman" not-null="true" />
         <one-to-many class="TradeContract" />

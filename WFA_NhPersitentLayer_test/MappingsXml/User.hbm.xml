@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping
+  assembly="WFA_NHibernate"
+  namespace="WFA_NHibernate.Domain"
+  default-access="property"
+  xmlns="urn:nhibernate-mapping-2.2">
+  
+  <class name="User" abstract="true" table="[User]">
+      
+    <id name="ID" column="ID" type="int">
+        <generator class="identity" />
+    </id>
+    <version name="Version" type="int" />
+    <property name="Nick" type="String" />
+    <property name="Name" type="String" />
+
+      <joined-subclass name="Teacher">
+          <key column="IDTeacher" />
+          <property name="CollegeCode" type="int" />
+      </joined-subclass>
+      
+      <joined-subclass name="Collaborator">
+          <key column="IDCollaborator" />
+          <property name="VatNumber" type="String" />
+      </joined-subclass>
+      
+  </class>
+</hibernate-mapping>

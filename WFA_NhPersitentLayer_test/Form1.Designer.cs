@@ -67,6 +67,7 @@
             this.button7 = new System.Windows.Forms.Button();
             this.txtLoader = new System.Windows.Forms.TextBox();
             this.btnLoader = new System.Windows.Forms.Button();
+            this.btn10 = new System.Windows.Forms.Button();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransformerResult)).BeginInit();
             this.tabPage1.SuspendLayout();
@@ -87,6 +88,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btn10);
             this.tabPage2.Controls.Add(this.button6);
             this.tabPage2.Controls.Add(this.richTxtBox);
             this.tabPage2.Controls.Add(this.txtNP3);
@@ -451,6 +453,16 @@
             this.btnLoader.UseVisualStyleBackColor = true;
             this.btnLoader.Click += new System.EventHandler(this.btnLoader_Click);
             // 
+            // btn10
+            // 
+            this.btn10.Location = new System.Drawing.Point(754, 202);
+            this.btn10.Name = "btn10";
+            this.btn10.Size = new System.Drawing.Size(134, 23);
+            this.btn10.TabIndex = 19;
+            this.btn10.Text = "NoScope";
+            this.btn10.UseVisualStyleBackColor = true;
+            this.btn10.Click += new System.EventHandler(this.btn10_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -514,6 +526,7 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btn10;
 
     }
 }
